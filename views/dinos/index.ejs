@@ -4,6 +4,9 @@
     <% dinos.forEach((dino, index) => { %>
     <li>
         <a href="/dinos/<%= index %>"><strong><%= dino.name %></strong></a>
+        <form methods="POST" action="/dinos/<%= index %>?_method=DELETE">
+            <input type="submit" value="Delete">
+        </form>
     </li>
     <% }) %>
 </ul>

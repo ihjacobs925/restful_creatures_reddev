@@ -79,7 +79,21 @@ router.put('/:id', (req, res) => {
 
     // Send my response (redirect to the Show/Details)
     res.redirect(`/dinos/${req.params.id}`);
-})
+});
+
+//Delete route
+router.delete('/:id', (req, res) => {
+    console.log('delete pls');
+    let dinoIndex = req.params.id;
+    let dinos = fs.readFileSync('./dinos.json');
+    dinosJS = JSON.parse(dinos);
+
+    dinosJS.splice(dinoIndex, 1);
+
+    fs.writeFileSync('./dinos.json', JSONstringify(dinoJS));
+
+    res.redirect('/dinos');
+});
 
 // Create — POST /dinos
 router.post('/', (req, res) => {
